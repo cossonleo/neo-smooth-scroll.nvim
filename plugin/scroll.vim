@@ -1,3 +1,12 @@
+""""""""""""""""""""""""""""""""""""""""""
+"    LICENSE: MIT
+"     Author: Cosson2017
+"    Version: 0.2
+" CreateTime: 2018-03-02 18:11:09
+" LastUpdate: 2018-03-02 18:12:09
+"       Desc: vim function offer to lua
+""""""""""""""""""""""""""""""""""""""""""
+
 func Scroll_down(timer)
 	call nvim_input("<c-e>")
 endfunc
