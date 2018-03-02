@@ -1,17 +1,43 @@
+--------------------------------------------------
+--    LICENSE: MIT
+--     Author: Cosson2017
+--    Version: 0.1
+-- CreateTime: 2018-03-02 17:30:32
+-- LastUpdate: 2018-03-02 17:30:32
+--       Desc: smooth scroll core
+--------------------------------------------------
+
 local scroll = {}
 
 
+-- current win handler
 local win = vim.api.nvim_get_current_win()
+
+-- current buf handler
 local buf = vim.api.nvim_get_current_buf()
+
+-- buf total line count
 local buf_line_count = vim.api.nvim_buf_line_count(buf)
+
+-- win display line count
 local win_line_count = vim.api.nvim_win_get_height(win)
+
+-- win disply half line count
 local half_win_line = math.ceil(win_line_count / 2) - 1
+
+-- cur pos relative to buf
 local buf_pos = vim.api.nvim_win_get_cursor(win)
+
+-- cur line relative to win
 local win_line = vim.api.nvim_call_function('winline', {})
+
+-- bottom line of buf displayed
 local bottom_line = win_line_count - win_line + buf_pos[1]
+
+-- top line of buf displayed
 local top_line = buf_pos[1] - win_line + 1
 
-local function inti()
+local function init()
 	win = vim.api.nvim_get_current_win()
 	buf = vim.api.nvim_get_current_buf()
 	buf_line_count = vim.api.nvim_buf_line_count(buf)
@@ -50,19 +76,35 @@ local function scroll_num_down()
 end
 
 function scroll.scroll_up()
-	inti()
-	scroll_args = scroll_num_up()
+	init()
+	local scroll_args = scroll_num_up()
+	if scroll_args[1] == 0
+	then
+		return
+	end
+
 	local opt = {}
 	opt["repeat"] = scroll_args[1]
-	vim.api.nvim_call_function("timer_start", {20,'Scroll_up', opt})
+	vim.api.nvim_call_function("timer_start", {15,'Scroll_up', opt})
 	vim.api.nvim_win_set_cursor(win, scroll_args[2])
 end
 
 function scroll.scroll_down()
-	scroll_args = scroll_num_down()
+	init()
+	local scroll_args = scroll_num_down()
+	if scroll_args[1] == 0
+	then
+		return
+	end
+
 	local opt = {}
 	opt["repeat"] = scroll_args[1]
-	vim.api.nvim_call_function("timer_start", {10,'Scroll_down', opt})
+	--local log = {}
+	--local inlog = {}
+	--inlog["text"] = scroll_args[1]
+	--log = {inlog}
+	--vim.api.nvim_call_function("setqflist", {log})
+	vim.api.nvim_call_function("timer_start", {15,'Scroll_down', opt})
 	vim.api.nvim_win_set_cursor(win, scroll_args[2])
 end
 
