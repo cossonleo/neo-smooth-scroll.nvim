@@ -3,7 +3,7 @@
 --     Author: Cosson2017
 --    Version: 0.2
 -- CreateTime: 2018-03-02 17:30:32
--- LastUpdate: 2018-03-02 18:10:59
+-- LastUpdate: 2018-03-02 18:21:57
 --       Desc: smooth scroll core
 --------------------------------------------------
 
@@ -49,7 +49,8 @@ local function init()
 	top_line = buf_pos[1] - win_line + 1
 end
 
-local function scroll_num_up()
+-- scroll up line num
+local function scroll_up_num()
 	if top_line <= 1
 	then
 		return {0, buf_pos}
@@ -61,7 +62,8 @@ local function scroll_num_up()
 	return {top_line - 1, {top_line - 1, 1}}
 end
 
-local function scroll_num_down()
+-- scroll down line num
+local function scroll_down_num()
 
 	if bottom_line >= buf_line_count 
 	then
@@ -75,9 +77,10 @@ local function scroll_num_down()
 	return { half_win_line, {bottom_line+1, 1} }
 end
 
+-- scroll up
 function scroll.scroll_up()
 	init()
-	local scroll_args = scroll_num_up()
+	local scroll_args = scroll_up_num()
 	if scroll_args[1] == 0
 	then
 		return
@@ -89,9 +92,10 @@ function scroll.scroll_up()
 	vim.api.nvim_win_set_cursor(win, scroll_args[2])
 end
 
+-- scroll down
 function scroll.scroll_down()
 	init()
-	local scroll_args = scroll_num_down()
+	local scroll_args = scroll_down_num()
 	if scroll_args[1] == 0
 	then
 		return
