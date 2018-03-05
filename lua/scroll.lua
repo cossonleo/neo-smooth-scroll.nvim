@@ -51,12 +51,10 @@ end
 
 -- scroll up line num
 local function scroll_up_num()
-	if top_line <= 1
-	then
+	if top_line <= 1 then
 		return {0, buf_pos}
 	end
-	if top_line > half_win_line
-	then 
+	if top_line > half_win_line then 
 		return {half_win_line, {top_line - 1, 1}}
 	end
 	return {top_line - 1, {top_line - 1, 1}}
@@ -65,13 +63,11 @@ end
 -- scroll down line num
 local function scroll_down_num()
 
-	if bottom_line >= buf_line_count 
-	then
+	if bottom_line >= buf_line_count then
 		return {0, buf_pos}
 	end
 
-	if bottom_line + half_win_line >= buf_line_count
-	then
+	if bottom_line + half_win_line >= buf_line_count then
 		return { buf_line_count - bottom_line, {bottom_line+1, 1} }
 	end
 	return { half_win_line, {bottom_line+1, 1} }
@@ -81,8 +77,7 @@ end
 function scroll.scroll_up()
 	init()
 	local scroll_args = scroll_up_num()
-	if scroll_args[1] == 0
-	then
+	if scroll_args[1] == 0 then
 		return
 	end
 
@@ -96,8 +91,7 @@ end
 function scroll.scroll_down()
 	init()
 	local scroll_args = scroll_down_num()
-	if scroll_args[1] == 0
-	then
+	if scroll_args[1] == 0 then
 		return
 	end
 
