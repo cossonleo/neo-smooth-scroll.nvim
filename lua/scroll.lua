@@ -3,7 +3,7 @@
 --     Author: Cosson2017
 --    Version: 0.2
 -- CreateTime: 2018-03-02 17:30:32
--- LastUpdate: 2018-03-02 18:21:57
+-- LastUpdate: 2018-03-05 13:20:17
 --       Desc: smooth scroll core
 --------------------------------------------------
 
@@ -88,7 +88,7 @@ function scroll.scroll_up()
 
 	local opt = {}
 	opt["repeat"] = scroll_args[1]
-	vim.api.nvim_call_function("timer_start", {15,'Scroll_up', opt})
+	vim.api.nvim_call_function("timer_start", {10, 'Scroll_up' , opt})
 	vim.api.nvim_win_set_cursor(win, scroll_args[2])
 end
 
@@ -101,14 +101,16 @@ function scroll.scroll_down()
 		return
 	end
 
-	local opt = {}
-	opt["repeat"] = scroll_args[1]
 	--local log = {}
 	--local inlog = {}
 	--inlog["text"] = scroll_args[1]
 	--log = {inlog}
 	--vim.api.nvim_call_function("setqflist", {log})
-	vim.api.nvim_call_function("timer_start", {15,'Scroll_down', opt})
+	
+
+	local opt = {}
+	opt["repeat"] = scroll_args[1]
+	vim.api.nvim_call_function("timer_start", {10,'Scroll_down', opt})
 	vim.api.nvim_win_set_cursor(win, scroll_args[2])
 end
 

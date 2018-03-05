@@ -3,15 +3,15 @@
 "     Author: Cosson2017
 "    Version: 0.2
 " CreateTime: 2018-03-02 18:11:09
-" LastUpdate: 2018-03-02 18:12:09
+" LastUpdate: 2018-03-05 13:20:09
 "       Desc: vim function offer to lua
 """"""""""""""""""""""""""""""""""""""""""
 
-func Scroll_down(timer)
+func! Scroll_down(timer)
 	call nvim_input("<c-e>")
 endfunc
 
-func Scroll_up(timer)
+func! Scroll_up(timer)
 	call nvim_input("<c-y>")
 endfunc
 
@@ -29,5 +29,5 @@ func Smooth_down()
 EOF
 endfunc
 
-noremap <c-d> :call Smooth_down()<cr>
-noremap <c-u> :call Smooth_up()<cr>
+noremap <silent> <c-d> :call Smooth_down()<cr>
+noremap <silent> <c-u> :call Smooth_up()<cr>
