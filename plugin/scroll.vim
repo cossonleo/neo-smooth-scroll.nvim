@@ -15,14 +15,14 @@ func! Scroll_up(timer)
 	call nvim_input("<c-y>")
 endfunc
 
-func Smooth_up()
+func! Smooth_up()
 	lua << EOF
 	scroll = require "scroll"
 	scroll.scroll_up()
 EOF
 endfunc
 
-func Smooth_down()
+func! Smooth_down()
 	lua << EOF
 	scroll = require "scroll"
 	scroll.scroll_down()
