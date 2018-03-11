@@ -3,9 +3,14 @@
 "     Author: Cosson2017
 "    Version: 0.2
 " CreateTime: 2018-03-02 18:11:09
-" LastUpdate: 2018-03-05 13:20:09
+" LastUpdate: 2018-03-11 15:51:00
 "       Desc: vim function offer to lua
 """"""""""""""""""""""""""""""""""""""""""
+
+if exists('g:neo_smooth_loaded')
+  finish
+endif
+let g:neo_comment_loaded = 1
 
 func! Scroll_down(timer)
 	call nvim_input("<c-e>")
